@@ -1,0 +1,10 @@
+:root {
+    --ilw-video--height: 240px;
+    --ilw-video--width: 426px;
+}
+
+ilw-video {
+    video {
+        display: block;
+    }
+}

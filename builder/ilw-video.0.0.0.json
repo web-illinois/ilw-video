@@ -1,0 +1,22 @@
+{
+	"title": "Video",
+	"tag": "ilw-video",
+	"github": "https://github.com/web-illinois/ilw-video/",
+	"type": "web component",
+	"element-name": "ilw-video",
+	"description": "The Video component is not the video-feature, just a way to box a youtube video or mediaspace video.",
+	"version": "0.0.0",
+	"date": "7/8/2024",
+	"css": "https://dev.toolkit.illinois.edu/ilw-video/0.0.0/ilw-video.css",
+	"js": "https://dev.toolkit.illinois.edu/ilw-video/0.0.0/ilw-video.js",
+	"production": false,
+	"notes": "",
+	"parent-style": "",
+	"samples": [],
+	"attributes-fixed": [],
+	"attributes-text": [],
+	"attributes": [],
+	"classes-fixed": [],
+	"classes": [],
+	"css-variables": []
+}
