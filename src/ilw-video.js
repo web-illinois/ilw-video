@@ -25,7 +25,9 @@ class Video extends LitElement {
     render() {
         return html`
             <div class="video">
-                <slot></slot>
+                <div class="aspect-ratio">
+                    <slot></slot>
+                </div>
             </div>
         `;
     }
