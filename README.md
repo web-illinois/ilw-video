@@ -32,9 +32,9 @@ None yet. Still in alpha.
 ```
 
 ```html
-<!-- youtube short (format tbd) -->
+<!-- youtube short -->
 <ilw-video>
-    https://www.youtube.com/shorts/6kIIFYwIU5w
+    <iframe width="467" height="831" src="https://www.youtube.com/embed/6kIIFYwIU5w" title="Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </ilw-video>
 ```
 
