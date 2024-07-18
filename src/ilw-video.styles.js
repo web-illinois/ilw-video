@@ -13,7 +13,9 @@ export default css`
         content: "";
     }
 
-    .aspect-ratio > * {
+    .aspect-ratio > ::slotted(iframe),
+    .aspect-ratio > ::slotted(embed),
+    .aspect-ratio > ::slotted(object) {
         position: absolute;
         top: 0;
         left: 0;
