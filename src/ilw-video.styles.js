@@ -9,7 +9,7 @@ export default css`
 
     .aspect-ratio::before {
         display: top;
-        padding-top: var(--ilw-video--aspect-ratio);
+        padding-top: calc(var(--ilw-video--aspect-ratio, 0.5625) * 100%);
         content: "";
     }
 
