@@ -5,9 +5,8 @@ import './ilw-video.css';
 class Video extends LitElement {
     static get properties() {
         return {
-            align: { type: String, attribute: true },
-            focus: { type: String, attribute: true },
-            theme: { type: String, attribute: true }
+            aspectRatio: { type: String, attribute: true },
+            focus: { type: String, attribute: true }
         };
     }
 
@@ -17,9 +16,8 @@ class Video extends LitElement {
 
     constructor() {
         super();
-        this.align = '';
+        this.aspectRatio = '';
         this.focus = false;
-        this.theme = '';
     }
 
     render() {
