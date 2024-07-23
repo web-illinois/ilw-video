@@ -37,7 +37,7 @@ YouTube Shorts use a 9:16 aspect ratio, so you will need to override the `--ilw-
 
 ```html
 <!-- youtube short -->
-<ilw-video style="--ilw-video--aspect-ratio: 9/16;">
+<ilw-video aspect-ratio="9/16;">
     <iframe width="467" height="831" src="https://www.youtube.com/embed/6kIIFYwIU5w" title="Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </ilw-video>
 
