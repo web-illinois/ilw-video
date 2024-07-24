@@ -5,8 +5,7 @@ import './ilw-video.css';
 class Video extends LitElement {
     static get properties() {
         return {
-            aspectRatio: { type: String, attribute: true },
-            focus: { type: String, attribute: true }
+            aspectRatio: { type: String, attribute: true }
         };
     }
 
