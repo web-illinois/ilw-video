@@ -23,7 +23,7 @@ class Video extends LitElement {
     render() {
         return html`
             <div class="video">
-                <div class="aspect-ratio">
+                <div class="aspect-ratio" ${this.aspectRatio ? 'style="--ilw-video--aspect-ratio(' + this.aspectRatio + ')"' : ''}>
                     <slot></slot>
                 </div>
             </div>
