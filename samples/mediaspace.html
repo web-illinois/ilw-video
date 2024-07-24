@@ -10,33 +10,20 @@
     <script type="module" src="/src/ilw-video.js"></script>
 </head>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const params = new URLSearchParams(window.location.search);
+        document.querySelectorAll("ilw-video").forEach(component => {
+            if (params.has('aspectRatio')) {
+                component.setAttribute('aspectRatio', params.get('aspectRatio'));
+            }
+        });
+    });
+</script>
+
 <body>
     <main>
         <div class="container" style="margin: 0 auto; padding: 0; max-width: 1200px;">
-            <h1>Video Component</h1>
-
-            <h2>YouTube</h2>
-
-            <h3>Standard Video</h3>
-            <ilw-video>
-                <iframe width="560" height="315"
-                    src="https://www.youtube-nocookie.com/embed/pW8cNXyAqyI?si=X9643WrgKwDm0BTw"
-                    title="Progress isn't Quiet at Illinois" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </ilw-video>
-
-            <h3>Shorts</h3>
-            <div class="vertical-container" style="max-width: 25%;">
-                <ilw-video aspect-ratio="9/16;">
-                    <iframe width="467" height="831" src="https://www.youtube-nocookie.com/embed/6kIIFYwIU5w"
-                        title="Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </ilw-video>
-            </div>
-
-            <h2>Mediaspace</h2>
             <ilw-video>
                 <iframe id="kmsembed-1_s61j2nnf" width="640" height="394"
                     src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_s61j2nnf/uiConfId/26883701/pbc/33485061/st/0"

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Component</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <link rel="stylesheet" href="https://dev.toolkit.illinois.edu/ilw-global/3.0.0-alpha/ilw-global.css">
+    <script type="module" src="/src/ilw-video.js"></script>
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const params = new URLSearchParams(window.location.search);
+        document.querySelectorAll("ilw-video").forEach(component => {
+            if (params.has('aspectRatio')) {
+                component.setAttribute('aspectRatio', params.get('aspectRatio'));
+            }
+        });
+    });
+</script>
+
+<body>
+    <main>
+        <div class="container" style="margin: 0 auto; padding: 0; max-width: 1200px;">
+            <div class="vertical-container" style="max-width: 25%;">
+                <ilw-video aspect-ratio="9/16;">
+                    <iframe width="467" height="831" src="https://www.youtube-nocookie.com/embed/6kIIFYwIU5w"
+                        title="Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </ilw-video>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

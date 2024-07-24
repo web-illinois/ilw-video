@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Component</title>
+    <link rel="stylesheet" href="https://cdn.brand.illinois.edu/illinois.css">
+    <link rel="stylesheet" href="https://dev.toolkit.illinois.edu/ilw-global/3.0.0-alpha/ilw-global.css">
+    <script type="module" src="/src/ilw-video.js"></script>
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const params = new URLSearchParams(window.location.search);
+        document.querySelectorAll("ilw-video").forEach(component => {
+            if (params.has('aspectRatio')) {
+                component.setAttribute('aspectRatio', params.get('aspectRatio'));
+            }
+        });
+    });
+</script>
+
+<body>
+    <main>
+        <div class="container" style="margin: 0 auto; padding: 0; max-width: 1200px;">
+            <ilw-video>
+                <iframe width="560" height="315"
+                    src="https://www.youtube-nocookie.com/embed/pW8cNXyAqyI?si=X9643WrgKwDm0BTw"
+                    title="Progress isn't Quiet at Illinois" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </ilw-video>
+    </main>
+</body>
+
+</html>
