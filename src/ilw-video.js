@@ -19,9 +19,11 @@ class Video extends LitElement {
     }
 
     render() {
+        const aspectOverride = this.aspectRatio ? `--ilw-video--aspect-ratio: ${this.aspectRatio}` : '';
+
         return html`
             <div class="video">
-                <div class="aspectRatio" ${this.aspectRatio ? 'style="--ilw-video--aspect-ratio(' + this.aspectRatio + ')"' : ''}>
+                <div class="aspectRatio" style="${aspectOverride}">
                     <slot></slot>
                 </div>
             </div>
