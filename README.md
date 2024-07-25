@@ -46,6 +46,8 @@ YouTube Shorts use a 9:16 aspect ratio, so you will need to override the `--ilw-
 
 YouTube video embed codes are created with boilerplate title attributes. You will need to correct each embedded video's title yourself.
 
+Videos must be captioned. Caption files must be uploaded with the video, and are not attached to the Illinois Toolkit video component.
+
 ## External References
 
 n/a
