@@ -1,21 +1,21 @@
 import { css } from 'lit';
 
 export default css`
-    .aspect-ratio {
+    .aspectRatio {
         position: relative;
         width: 100%;
         aspect-ratio: var(--ilw-video--aspect-ratio);
     }
 
-    .aspect-ratio::before {
+    .aspectRatio::before {
         display: top;
         padding-top: calc(var(--ilw-video--aspect-ratio, 0.5625) * 100%);
         content: "";
     }
 
-    .aspect-ratio > ::slotted(iframe),
-    .aspect-ratio > ::slotted(embed),
-    .aspect-ratio > ::slotted(object) {
+    .aspectRatio > ::slotted(iframe),
+    .aspectRatio > ::slotted(embed),
+    .aspectRatio > ::slotted(object) {
         position: absolute;
         top: 0;
         left: 0;
