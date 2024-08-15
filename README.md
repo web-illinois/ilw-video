@@ -21,6 +21,10 @@ For example, a page with multiple YouTube shorts might use the following style r
 </style>
 ```
 
+The video component may use the size and width attributes specified in the video's embed code.
+Size may also be controlled directly using the component's `height` and `width` attributes.
+If no size is specified in the component or embed code, the video will fill the component's parent container.
+
 ## Slots
 
 The video component has only one slot, which contains the video embed code (typically an iframe).
