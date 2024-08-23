@@ -5,7 +5,9 @@ import './ilw-video.css';
 class Video extends LitElement {
     static get properties() {
         return {
-            aspectRatio: { type: String, attribute: true }
+            aspectRatio: { type: String, attribute: true },
+            height: { type: String, attribute: true },
+            width: { type: String, attribute: true }
         };
     }
 
@@ -16,6 +18,8 @@ class Video extends LitElement {
     constructor() {
         super();
         this.aspectRatio = '';
+        this.height = '';
+        this.width = '';
     }
 
     render() {
