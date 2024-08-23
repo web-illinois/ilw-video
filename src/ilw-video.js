@@ -18,8 +18,14 @@ class Video extends LitElement {
     constructor() {
         super();
         this.aspectRatio = '';
-        this.height = '';
-        this.width = '';
+
+        try {
+            const dimensions = this.getDimensions();
+            this.height = dimensions.height;
+            this.width = dimensions.width;
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     render() {
@@ -27,11 +33,28 @@ class Video extends LitElement {
 
         return html`
             <div class="video">
-                <div class="aspectRatio" style="${aspectOverride}">
+                <div class="aspectRatio" style="${aspectOverride} max-height: ${this.height}; max-width: ${this.width};">
                     <slot></slot>
                 </div>
             </div>
         `;
+    }
+
+    getDimensions() {
+        const element = this.querySelector('iframe, embed, object');
+        if (element === null) {
+            throw 'ilw-video component missing iframe.'
+        }
+
+        const height = element?.getAttribute('height') + 'px' ?? '100%';
+        const width = element?.getAttribute('width') + 'px' ?? '100%';
+
+        const dimensions = {
+            height: height,
+            width: width,
+        };
+
+        return dimensions;
     }
 }
 

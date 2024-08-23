@@ -3,7 +3,6 @@ import { css } from 'lit';
 export default css`
     .aspectRatio {
         position: relative;
-        width: 100%;
         aspect-ratio: var(--ilw-video--aspect-ratio);
     }
 
