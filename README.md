@@ -41,19 +41,11 @@ None yet. Still in alpha.
 
 Most embedded videos will use a standard 16:9 aspect ratio, as defined in `--ilw-video--aspect-ratio`.
 
-### Standard YouTube Embed
+### Standard YouTube or Mediaspace Embed
 
 ```html
 <ilw-video>
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pW8cNXyAqyI?si=X9643WrgKwDm0BTw" title="Progress isn't Quiet at Illinois" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</ilw-video>
-```
-
-### Mediaspace Embed
-
-```html
-<ilw-video>
-    <iframe id="kmsembed-1_s61j2nnf" width="640" height="394" src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_s61j2nnf/uiConfId/26883701/pbc/33485061/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="150 Years of Illinois: A Holiday Greeting from the Chancellor"></iframe>
 </ilw-video>
 ```
 
