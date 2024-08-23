@@ -1,6 +1,6 @@
 {
   "name": "@illinois-toolkit/ilw-video",
-  "description": "Illinois Toolkit: A responsive wrapper for embedded videos."
+  "description": "Illinois Toolkit: A responsive wrapper for embedded videos.",
   "private": false,
   "version": "1.0.0-alpha",
   "type": "module",
