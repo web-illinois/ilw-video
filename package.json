@@ -1,17 +1,26 @@
 {
   "name": "@illinois-toolkit/ilw-video",
+  "description": "Illinois Toolkit: A responsive wrapper for embedded videos."
   "private": false,
   "version": "1.0.0-alpha",
   "type": "module",
+  "files": [
+    "src/**",
+    "dist/**",
+    "builder/**"
+  ],
   "exports": {
     ".": {
-      "import": "./src/ilw-video.js"
+      "import": "./src/ilw-video.js",
+      "require": "./src/ilw-video.cjs",
+      "default": "./src/ilw-video.js"
     }
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build --config vite.build.config.js --emptyOutDir",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepack": "npm run build"
   },
   "license": "MIT",
   "dependencies": {
