@@ -21,8 +21,8 @@ class Video extends LitElement {
 
         try {
             const dimensions = this.getDimensions();
-            this.height = dimensions.height;
-            this.width = dimensions.width;
+            this.height = this.height ? this.height : dimensions.height;
+            this.width = this.width ? this.width : dimensions.width;
         } catch (err) {
             console.error(err);
         }
