@@ -17,6 +17,11 @@
             "name": "short",
             "description": "Overriding the default aspect ratio for a single YouTube short.",
             "text": "<iframe width='467' height='831' src='https://www.youtube.com/embed/6kIIFYwIU5w' title='Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
+        },
+        {
+            "name": "short (dimensionless)",
+            "description": "Overriding the default dimensions for a single YouTube short.",
+            "text": "<iframe src='https://www.youtube.com/embed/6kIIFYwIU5w' title='Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
         }
     ],
     "attributes-fixed": [],
@@ -26,8 +31,25 @@
             "name": "aspectRatio",
             "description": "Override the aspect ratio variable on a single item.",
             "values": [
-                "9/16",
-                ""
+                "9/16"
+            ]
+        },
+        {
+            "name": "height",
+            "description": "Override the default video height.",
+            "values": [
+                "",
+                "831",
+                "444"
+            ]
+        },
+        {
+            "name": "width",
+            "description": "Override the default video width.",
+            "values": [
+                "",
+                "467",
+                "250"
             ]
         }
     ],
