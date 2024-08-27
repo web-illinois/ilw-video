@@ -1,0 +1,11 @@
+{
+    "title": "YouTube Short",
+    "tag": "ilw-video-short",
+    "github": "https://github.com/web-illinois/ilw-video/",
+    "type": "web component",
+    "element-name": "ilw-video",
+    "description": "Responsive video wrapper for Illinois Toolkit proportioned for YouTube shorts.",
+    "toolkit-version": "",
+    "production-version": "",
+    "development-version": "1.0.0-alpha"
+}
