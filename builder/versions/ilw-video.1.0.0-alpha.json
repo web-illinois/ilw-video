@@ -45,8 +45,8 @@
 			"description": "Override the height on a single item.",
 			"values": [
 				"",
-				"315",
-				"450"
+				"315px",
+				"450px"
 			]
 		},
 		{
@@ -54,8 +54,8 @@
 			"description": "Override the width on a single item.",
 			"values": [
 				"",
-				"560",
-				"800"
+				"560px",
+				"800px"
 			]
 		}
 	],

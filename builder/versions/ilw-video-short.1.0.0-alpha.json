@@ -39,8 +39,8 @@
             "description": "Override the default video height.",
             "values": [
                 "",
-                "831",
-                "444"
+                "831px",
+                "444px"
             ]
         },
         {
@@ -48,8 +48,8 @@
             "description": "Override the default video width.",
             "values": [
                 "",
-                "467",
-                "250"
+                "467px",
+                "250px"
             ]
         }
     ],
