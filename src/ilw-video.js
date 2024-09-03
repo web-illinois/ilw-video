@@ -7,6 +7,8 @@ class Video extends LitElement {
         return {
             aspectratio: { type: String, attribute: true },
             height: { type: String, attribute: true },
+            src: { type: String, attribute: true },
+            title: { type: String, attribute: true },
             width: { type: String, attribute: true }
         };
     }
@@ -19,6 +21,8 @@ class Video extends LitElement {
         super();
         this.aspectratio = '';
         this.height = '';
+        this.src = undefined;
+        this.title = '';
         this.width = '';
     }
 
