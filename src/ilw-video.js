@@ -31,26 +31,25 @@ class Video extends LitElement {
         const aspectOverride = this.aspectratio ? `--ilw-video--aspect-ratio: ${this.aspectratio}` : '';
 
         // check slot vs. src
-        // if slot
-        // get dimensions
-        // override aspect, dimensions
-        // return html
+        const embed = this.querySelector('iframe, embed, object');
+        if (embed !== null) {
+            const dimensions = this.getIframeDimensions();
+            this.height = this.height ? this.height : dimensions.height;
+            this.width = this.width ? this.width : dimensions.width;
+
+            return html`
+                <div class="video">
+                    <div class="aspectratio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
+                        <slot></slot>
+                    </div>
+                </div>
+            `;
+        }
         // else if src
         // get src, title
         // generate embed
         // return html
-
-        const dimensions = this.getIframeDimensions();
-        this.height = this.height ? this.height : dimensions.height;
-        this.width = this.width ? this.width : dimensions.width;
-
-        return html`
-            <div class="video">
-                <div class="aspectratio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
-                    <slot></slot>
-                </div>
-            </div>
-        `;
+        throw 'not implemented';
     }
 
     generateIframe(url, title, view) {
@@ -69,12 +68,7 @@ class Video extends LitElement {
         }
     }
 
-    getIframeDimensions() {
-        const element = this.querySelector('iframe, embed, object');
-        if (element === null) {
-            throw 'ilw-video component missing iframe.'
-        }
-
+    getIframeDimensions(element) {
         const height = element?.getAttribute('height') ?? '100%';
         const width = element?.getAttribute('width') ?? '100%';
 
