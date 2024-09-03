@@ -31,11 +31,16 @@ class Video extends LitElement {
 
         return html`
             <div class="video">
-                <div class="aspectRatio" style="${aspectOverride} max-height: ${this.height}; max-width: ${this.width};">
+                <div class="aspectRatio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
                     <slot></slot>
                 </div>
             </div>
         `;
+    }
+
+    pixelate(dimension) {
+        const pixelated = isNaN(dimension) ? dimension : dimension + 'px';
+        return pixelated;
     }
 
     getIframeDimensions() {
@@ -44,8 +49,8 @@ class Video extends LitElement {
             throw 'ilw-video component missing iframe.'
         }
 
-        const height = element?.getAttribute('height') + 'px' ?? '100%';
-        const width = element?.getAttribute('width') + 'px' ?? '100%';
+        const height = element?.getAttribute('height') ?? '100%';
+        const width = element?.getAttribute('width') ?? '100%';
 
         const dimensions = {
             height: height,
