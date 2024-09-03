@@ -25,9 +25,23 @@ The video component may use the size and width attributes specified in the video
 Size may also be controlled directly using the component's `height` and `width` attributes.
 If no size is specified in the component or embed code, the video will fill the component's parent container.
 
+For convenience and backward compatibility, embed codes may be generated automatically for YouTube, Mediaspace, and Vimeo URLs by using the `src` attribute. If the `src` attribute is used, a corresponding `title` attribute must be included. Auto-generated videos will use the default 16:9 aspect ratio and will fill their parent container. If both an embed code and src attribute are used, the slotted embed code will take priority.
+
 ## Slots
 
 The video component has only one slot, which contains the video embed code (typically an iframe).
+
+## Attributes
+
+- `aspectRatio`
+- `height`
+- `src`
+- `title`
+- `width`
+
+## Variables
+
+- `--ilw-video--aspect-ratio`
 
 ## NPM Install
 
