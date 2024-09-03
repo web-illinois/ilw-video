@@ -14,8 +14,8 @@
     document.addEventListener("DOMContentLoaded", function (event) {
         const params = new URLSearchParams(window.location.search);
         document.querySelectorAll("ilw-video").forEach(component => {
-            if (params.has('aspectRatio')) {
-                component.setAttribute('aspectRatio', params.get('aspectRatio'));
+            if (params.has('aspectratio')) {
+                component.setAttribute('aspectratio', params.get('aspectratio'));
             }
         });
     });
@@ -25,7 +25,7 @@
     <main>
         <div class="container" style="margin: 0 auto; padding: 0; max-width: 1200px;">
             <div class="vertical-container">
-                <ilw-video aspectRatio="9/16;">
+                <ilw-video aspectratio="9/16;">
                     <iframe width="467" height="831" src="https://www.youtube-nocookie.com/embed/6kIIFYwIU5w"
                         title="Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

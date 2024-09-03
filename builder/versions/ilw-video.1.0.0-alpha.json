@@ -33,7 +33,7 @@
 	"attributes-text": [],
 	"attributes": [
 		{
-			"name": "aspectRatio",
+			"name": "aspectratio",
 			"description": "Override the aspect ratio variable on a single item.",
 			"values": [
 				"",

@@ -14,8 +14,8 @@
     document.addEventListener("DOMContentLoaded", function (event) {
         const params = new URLSearchParams(window.location.search);
         document.querySelectorAll("ilw-video").forEach(component => {
-            if (params.has('aspectRatio')) {
-                component.setAttribute('aspectRatio', params.get('aspectRatio'));
+            if (params.has('aspectratio')) {
+                component.setAttribute('aspectratio', params.get('aspectratio'));
             }
         });
     });

@@ -7,11 +7,11 @@ This component ensures a consistent size and aspect ratio across breakpoints, bu
 
 By default, the container uses the same 16:9 aspect ratio used by standard YouTube videos.
 
-An individual video may be given a custom aspect ratio using the component's `aspectRatio` attribute.
-For example, a YouTube short would use `aspectRatio="9/16"`.
+An individual video may be given a custom aspect ratio using the component's `aspectratio` attribute.
+For example, a YouTube short would use `aspectratio="9/16"`.
 
 If all videos on a page should use a common custom aspect ratio, the component's aspect ratio may be reset using the `--ilw-video--aspect-ratio` css variable.
-For example, a page with multiple YouTube shorts might use the following style rule instead of setting each component's `aspectRatio` attribute.
+For example, a page with multiple YouTube shorts might use the following style rule instead of setting each component's `aspectratio` attribute.
 
 ```css
 <style>
@@ -33,7 +33,7 @@ The video component has only one slot, which contains the video embed code (typi
 
 ## Attributes
 
-- `aspectRatio`
+- `aspectratio`
 - `height`
 - `src`
 - `title`
@@ -68,7 +68,7 @@ Most embedded videos will use a standard 16:9 aspect ratio, as defined in `--ilw
 YouTube Shorts use a 9:16 aspect ratio, so you will need to override the `--ilw-video--aspect-ratio` variable, either inline or in your stylesheet.
 
 ```html
-<ilw-video aspectRatio="9/16;">
+<ilw-video aspectratio="9/16;">
     <iframe width="467" height="831" src="https://www.youtube.com/embed/6kIIFYwIU5w" title="Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </ilw-video>
 ```

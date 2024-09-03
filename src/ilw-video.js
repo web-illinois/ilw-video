@@ -5,7 +5,7 @@ import './ilw-video.css';
 class Video extends LitElement {
     static get properties() {
         return {
-            aspectRatio: { type: String, attribute: true },
+            aspectratio: { type: String, attribute: true },
             height: { type: String, attribute: true },
             width: { type: String, attribute: true }
         };
@@ -17,13 +17,13 @@ class Video extends LitElement {
 
     constructor() {
         super();
-        this.aspectRatio = '';
+        this.aspectratio = '';
         this.height = '';
         this.width = '';
     }
 
     render() {
-        const aspectOverride = this.aspectRatio ? `--ilw-video--aspect-ratio: ${this.aspectRatio}` : '';
+        const aspectOverride = this.aspectratio ? `--ilw-video--aspect-ratio: ${this.aspectratio}` : '';
 
         const dimensions = this.getIframeDimensions();
         this.height = this.height ? this.height : dimensions.height;
@@ -31,7 +31,7 @@ class Video extends LitElement {
 
         return html`
             <div class="video">
-                <div class="aspectRatio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
+                <div class="aspectratio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
                     <slot></slot>
                 </div>
             </div>
