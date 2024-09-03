@@ -18,18 +18,16 @@ class Video extends LitElement {
     constructor() {
         super();
         this.aspectRatio = '';
-
-        try {
-            const dimensions = this.getDimensions();
-            this.height = this.height ? this.height : dimensions.height;
-            this.width = this.width ? this.width : dimensions.width;
-        } catch (err) {
-            console.error(err);
-        }
+        this.height = '';
+        this.width = '';
     }
 
     render() {
         const aspectOverride = this.aspectRatio ? `--ilw-video--aspect-ratio: ${this.aspectRatio}` : '';
+
+        const dimensions = this.getIframeDimensions();
+        this.height = this.height ? this.height : dimensions.height;
+        this.width = this.width ? this.width : dimensions.width;
 
         return html`
             <div class="video">
@@ -40,7 +38,7 @@ class Video extends LitElement {
         `;
     }
 
-    getDimensions() {
+    getIframeDimensions() {
         const element = this.querySelector('iframe, embed, object');
         if (element === null) {
             throw 'ilw-video component missing iframe.'
