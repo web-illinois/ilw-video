@@ -51,24 +51,6 @@ class Video extends LitElement {
         `;
     }
 
-    calculateAspectRatio() {
-        console.warn('Legacy calculateAspectRatio function is deprecated.');
-        let getAspectRatio = getComputedStyle(this).getPropertyValue('--ilw-video--aspect-ratio').trim();
-        let padding = '56.25%';
-        if (getAspectRatio == 'vertical') {
-            padding = '177.78%';
-        } else if (getAspectRatio == 'tv') {
-            padding = '75%';
-        } else if (getAspectRatio.endsWith('%')) {
-            padding = getAspectRatio;
-        } else if (getAspectRatio.includes('/')) {
-            let items = getAspectRatio.split('/');
-            padding = (parseInt(items[1].replace("'", ""))) / (parseInt(items[0].replace("'", ""))) * 100 + '%';
-        }
-
-        return padding;
-    }
-
     generateIframe(url, title, view) {
         console.warn(`Generating iframe for ${title}`);
         let urlHelper = new UrlItem.UrlItem(url, view);
