@@ -21,4 +21,19 @@ export default css`
         width: 100%;
         height: 100%;
     }
+
+    .videowrapper-width {
+        width: var(--il-video-max-width);
+        margin: var(--il-video-margin);
+    }
+
+    .videowrapper-full {
+        width: 100%; 
+        align-self: center;
+    }
+
+    .videowrapper {
+        position: relative; 
+        height: 0;
+    }
 `;
