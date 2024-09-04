@@ -32,23 +32,23 @@ class Video extends LitElement {
 
         // check slot vs. src
         const embed = this.querySelector('iframe, embed, object');
-        if (embed !== null) {
-            const dimensions = this.getIframeDimensions();
-            this.height = this.height ? this.height : dimensions.height;
-            this.width = this.width ? this.width : dimensions.width;
-
+        if (embed === null) {
+            const padding = this.calculateAspectRatio();
             return html`
-                <div class="video">
-                    <div class="aspectratio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
-                        <slot></slot>
-                    </div>
-                </div>
-            `;
+          <div class="videowrapper-width" style=""><div class="videowrapper-full"><div class='videowrapper' style='padding-bottom: ${padding}'>${this.generateIframe(this.src, this.title, this.view)}</div></div></div>`;
         }
-        // else if src
-        const padding = this.calculateAspectRatio();
+        // else if embed
+        const dimensions = this.getIframeDimensions();
+        this.height = this.height ? this.height : dimensions.height;
+        this.width = this.width ? this.width : dimensions.width;
+
         return html`
-      <div class="videowrapper-width" style=""><div class="videowrapper-full"><div class='videowrapper' style='padding-bottom: ${padding}'>${this.generateIframe(this.src, this.title, this.view)}</div></div></div>`;
+            <div class="video">
+                <div class="aspectratio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
+                    <slot></slot>
+                </div>
+            </div>
+        `;
     }
 
     calculateAspectRatio() {
