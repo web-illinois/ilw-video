@@ -46,10 +46,27 @@ class Video extends LitElement {
             `;
         }
         // else if src
-        // get src, title
-        // generate embed
-        // return html
-        throw 'not implemented';
+        const padding = this.calculateAspectRatio();
+        return html`
+      <div class="videowrapper-width" style=""><div class="videowrapper-full"><div class='videowrapper' style='padding-bottom: ${padding}'>${this.generateIframe(this.src, this.title, this.view)}</div></div></div>`;
+    }
+
+    calculateAspectRatio() {
+        console.warn('Legacy calculateAspectRatio function is deprecated.');
+        let getAspectRatio = getComputedStyle(this).getPropertyValue('--ilw-video--aspect-ratio').trim();
+        let padding = '56.25%';
+        if (getAspectRatio == 'vertical') {
+            padding = '177.78%';
+        } else if (getAspectRatio == 'tv') {
+            padding = '75%';
+        } else if (getAspectRatio.endsWith('%')) {
+            padding = getAspectRatio;
+        } else if (getAspectRatio.includes('/')) {
+            let items = getAspectRatio.split('/');
+            padding = (parseInt(items[1].replace("'", ""))) / (parseInt(items[0].replace("'", ""))) * 100 + '%';
+        }
+
+        return padding;
     }
 
     generateIframe(url, title, view) {
