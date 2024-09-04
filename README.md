@@ -79,6 +79,13 @@ YouTube video embed codes are created with boilerplate title attributes. You wil
 
 Videos must be captioned. Caption files must be uploaded with the video, and are not attached to the Illinois Toolkit video component.
 
+## Upgrade Process
+
+`ilw-video` replaces `il-video` from Toolkit version 2 and earlier. To upgrade:
+
+- Replace all instances of the `il-video` tag with `ilw-video`.
+- Replace all instances of the `--il-video-aspect-ratio` CSS variable with `--ilw-video--aspect-ratio`.
+
 ## External References
 
 - [Video Resolution & Aspect Ratios (YouTube)](https://support.google.com/youtube/answer/6375112)
