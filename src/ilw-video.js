@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit';
 import styles from './ilw-video.styles'
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
+import AttributeUtils from './utilities/attribute-utils';
 
 class Video extends LitElement {
     static get properties() {
@@ -41,7 +42,7 @@ class Video extends LitElement {
 
             return html`
                 <div class="video">
-                    <div class="aspectratio" style="${inlineAspect} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
+                    <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
                         ${iframe}
                     </div>
                 </div>
@@ -50,7 +51,7 @@ class Video extends LitElement {
 
         return html`
             <div class="video">
-                <div class="aspectratio" style="${inlineAspect} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
+                <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
                     <slot></slot>
                 </div>
             </div>
@@ -96,11 +97,6 @@ class Video extends LitElement {
         };
 
         return dimensions;
-    }
-
-    pixelate(dimension) {
-        const pixelated = isNaN(dimension) ? dimension : dimension + 'px';
-        return pixelated;
     }
 }
 
