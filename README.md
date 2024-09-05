@@ -85,6 +85,8 @@ Videos must be captioned. Caption files must be uploaded with the video, and are
 
 - Replace all instances of the `il-video` tag with `ilw-video`.
 - Replace all instances of the `--il-video-aspect-ratio` CSS variable with `--ilw-video--aspect-ratio`.
+- Replace all instances of `tv` aspect ratio with `16/9`.
+- Replace all instances of `vertical` aspect ratio with `9/16`.
 
 ## External References
 
