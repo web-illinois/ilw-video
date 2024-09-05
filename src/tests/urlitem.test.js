@@ -1,6 +1,18 @@
 import { expect, test } from '@jest/globals';
 import UrlItem from '../legacy/urlitem';
 
+test('youtube short', () => {
+    const urlInformation = new UrlItem.UrlItem('https://youtube.com/shorts/rNVU0k3u14Y', '');
+    expect(urlInformation.videoType).toBe('youtube');
+    expect(urlInformation.videoUrl).toBe('https://www.youtube.com/embed/rNVU0k3u14Y')
+})
+
+test('youtube live', () => {
+    const urlInformation = new UrlItem.UrlItem('https://youtube.com/live/coFTFEFfVa8', '');
+    expect(urlInformation.videoType).toBe('youtube');
+    expect(urlInformation.videoUrl).toBe('https://www.youtube.com/embed/coFTFEFfVa8')
+})
+
 test('youtube iframe with channel', () => {
     const urlInformation = new UrlItem.UrlItem('https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley', '');
     expect(urlInformation.videoType).toBe('youtube');
