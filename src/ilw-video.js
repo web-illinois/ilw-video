@@ -28,7 +28,7 @@ class Video extends LitElement {
     }
 
     render() {
-        const aspectOverride = this.aspectratio ? `--ilw-video--aspect-ratio: ${this.convertAspectRatio(this.aspectratio)}` : '';
+        const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${this.convertAspectRatio(this.aspectratio)}` : '';
 
         const embed = this.querySelector('iframe, embed, object');
 
@@ -41,7 +41,7 @@ class Video extends LitElement {
 
             return html`
                 <div class="video">
-                    <div class="aspectratio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
+                    <div class="aspectratio" style="${inlineAspect} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
                         ${iframe}
                     </div>
                 </div>
@@ -50,7 +50,7 @@ class Video extends LitElement {
 
         return html`
             <div class="video">
-                <div class="aspectratio" style="${aspectOverride} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
+                <div class="aspectratio" style="${inlineAspect} max-height: ${this.pixelate(this.height)}; max-width: ${this.pixelate(this.width)};">
                     <slot></slot>
                 </div>
             </div>
