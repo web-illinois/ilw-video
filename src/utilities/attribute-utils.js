@@ -2,10 +2,10 @@ class Item { }
 export default class AttributeUtils extends Item {
     static convertAspectRatio(aspect) {
         switch (aspect) {
-            case aspect === 'tv':
+            case 'tv':
                 console.warn('Legacy aspect ratio "tv" is deprecated. Converting to 16/9.');
                 return '16/9';
-            case aspect === 'vertical':
+            case 'vertical':
                 console.warn('Legacy aspect ratio "vertical" is deprecated. Converting to 9/16.');
                 return '9/16';
             default:
