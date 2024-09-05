@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import UrlItem from '../legacy/urlitem';
+import UrlItem from '../utilities/urlitem';
 
 test('youtube short', () => {
     const urlInformation = new UrlItem.UrlItem('https://youtube.com/shorts/rNVU0k3u14Y', '');

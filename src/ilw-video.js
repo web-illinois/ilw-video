@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import styles from './ilw-video.styles'
 import './ilw-video.css';
-import UrlItem from './legacy/urlitem';
+import UrlItem from './utilities/urlitem';
 
 class Video extends LitElement {
     static get properties() {
