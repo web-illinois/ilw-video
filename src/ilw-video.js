@@ -31,28 +31,24 @@ class Video extends LitElement {
     render() {
         const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
-        const embed = this.querySelector('iframe, embed, object');
+        const slot = this.shadowRoot.querySelector('slot');
+        let embed = this.querySelector('iframe, embed, object');
 
         const dimensions = this.getIframeDimensions(embed);
         this.height = this.height ? this.height : dimensions.height;
         this.width = this.width ? this.width : dimensions.width;
 
         if (embed === null) {
-            const iframe = this.generateIframe(this.src, this.title, this.view);
-
-            return html`
-                <div class="video">
-                    <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                        ${iframe}
-                    </div>
-                </div>
-            `;
+            embed = this.generateIframe(this.src, this.title, this.view);
+            if (slot) {
+                slot.assign(embed)
+            }
         }
 
         return html`
             <div class="video">
                 <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                    <slot></slot>
+                    ${slot ? html`${slot}` : html`${embed}`}
                 </div>
             </div>
         `;
