@@ -1,6 +1,7 @@
-import { expect, test } from '@jest/globals';
+import { expect, test } from '@playwright/test';
 import UrlItem from '../src/utilities/urlitem';
 
+test.describe.configure({ mode: 'parallel' });
 test('youtube short', () => {
     const urlInformation = new UrlItem.UrlItem('https://youtube.com/shorts/rNVU0k3u14Y', '');
     expect(urlInformation.videoType).toBe('youtube');
@@ -29,12 +30,6 @@ test('youtube iframe embed', () => {
     const urlInformation = new UrlItem.UrlItem('https://youtu.be/IcrbM1l_BoI', '');
     expect(urlInformation.videoType).toBe('youtube');
     expect(urlInformation.videoUrl).toBe('https://www.youtube.com/embed/IcrbM1l_BoI');
-})
-
-test('mediaspace iframe link', () => {
-    const urlInformation = new UrlItem.UrlItem('https://mediaspace.illinois.edu/media/t/1_sb1wrbxx', '');
-    expect(urlInformation.videoType).toBe('mediaspace');
-    expect(urlInformation.videoUrl).toBe('https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_sb1wrbxx/uiConfId/26883701');
 })
 
 test('mediaspace iframe link', () => {
