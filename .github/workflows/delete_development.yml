@@ -2,7 +2,7 @@ name: delete_development
 on:
   workflow_dispatch:
 env:
-  COMPONENT_NAME: 'ilw-video'   # set this to the web component name you are using
+  COMPONENT_NAME: ${{ github.event.repository.name }}
 jobs:
   build:
     runs-on: ubuntu-latest
