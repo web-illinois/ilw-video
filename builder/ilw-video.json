@@ -5,6 +5,7 @@
     "type": "web component",
     "element-name": "ilw-video",
     "description": "Responsive video wrapper for Illinois Toolkit. This component ensures a consistent size and aspect ratio across breakpoints, but does not supply the video element or its controls.",
+    "purpose": "Make a video embed responsive.",
     "toolkit-version": "",
     "production-version": "",
     "development-version": "1.0-beta"
