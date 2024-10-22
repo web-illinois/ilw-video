@@ -1,0 +1,67 @@
+{
+    "title": "Video Short",
+    "tag": "ilw-video-short",
+    "github": "https://github.com/web-illinois/ilw-video/",
+    "type": "web component",
+    "element-name": "ilw-video",
+    "description": "Responsive video wrapper for Illinois Toolkit proportioned for YouTube shorts.",
+	"builder-version": "1.0",
+	"version": "1.0.0",
+	"date": "10/22/2024",
+	"css": "https://cdn.toolkit.illinois.edu/ilw-video/1.0.0/ilw-video.css",
+	"js": "https://cdn.toolkit.illinois.edu/ilw-video/1.0.0/ilw-video.js",
+	"production": true,
+    "notes": "",
+    "parent-style": "",
+    "samples": [
+        {
+            "name": "short",
+            "description": "Overriding the default aspect ratio for a single YouTube short.",
+            "text": "<iframe width=\"467\" height=\"831\" src=\"https://www.youtube.com/embed/6kIIFYwIU5w\" title=\"Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+        },
+        {
+            "name": "short (dimensionless)",
+            "description": "Overriding the default dimensions for a single YouTube short.",
+            "text": "<iframe src=\"https://www.youtube.com/embed/6kIIFYwIU5w\" title=\"Cheers to the start of an #ILLINOIS summer ☀️ #summer #solstice #shorts\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+        }
+    ],
+    "attributes-fixed": [],
+    "attributes-text": [],
+    "attributes": [
+        {
+            "name": "aspectratio",
+            "description": "Override the aspect ratio variable on a single item.",
+            "values": [
+                "9/16",
+                ""
+            ]
+        },
+        {
+            "name": "height",
+            "description": "Override the default video height.",
+            "values": [
+                "",
+                "831px",
+                "444px"
+            ]
+        },
+        {
+            "name": "width",
+            "description": "Override the default video width.",
+            "values": [
+                "",
+                "467px",
+                "250px"
+            ]
+        }
+    ],
+    "classes-fixed": [],
+    "classes": [],
+    "css-variables": [
+        {
+            "name": "--ilw-video--aspect-ratio",
+            "description": "Aspect ratio of the embedded video.",
+            "deprecated": false
+        }
+    ]
+}
