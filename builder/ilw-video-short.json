@@ -5,6 +5,7 @@
     "type": "web component",
     "element-name": "ilw-video",
     "description": "Responsive video wrapper for Illinois Toolkit proportioned for YouTube shorts.",
+    "purpose": "Make an embedded YouTube short responsive.",
     "toolkit-version": "1.0",
     "production-version": "1.0",
     "development-version": "1.0-beta"
