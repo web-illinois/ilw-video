@@ -2,7 +2,7 @@
   "name": "@illinois-toolkit/ilw-video",
   "description": "Illinois Toolkit: A responsive wrapper for embedded videos.",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "files": [
     "src/**",
@@ -29,7 +29,7 @@
     "lit": "3.1.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.47.0",
-    "vite": "^5.2.0"
+    "@playwright/test": "^1.49.1",
+    "vite": "^5.4.11"
   }
 }
