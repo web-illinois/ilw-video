@@ -1,6 +1,6 @@
 class Item { }
 export default class AttributeUtils extends Item {
-    static convertAspectRatio(aspect) {
+    static convertAspectRatio(aspect?: string) {
         switch (aspect) {
             case 'tv':
                 console.warn('Legacy aspect ratio "tv" is deprecated. Converting to 16/9.');
@@ -13,8 +13,8 @@ export default class AttributeUtils extends Item {
         }
     }
 
-    static pixelate(dimension) {
-        const pixelated = isNaN(dimension) ? dimension : dimension + 'px';
+    static pixelate(dimension: string | number) {
+        const pixelated = isNaN(dimension as number) ? dimension : dimension + 'px';
         return pixelated;
     }
 }

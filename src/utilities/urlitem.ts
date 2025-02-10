@@ -1,7 +1,12 @@
 class Item { }
 
 class UrlItem extends Item {
-    constructor(url, view) {
+    _videoCode?: string;
+    _videoId?: string;
+    _videoUrl?: string;
+    _videoType?: string;
+
+    constructor(url: string, view: string) {
         super();
         this._videoId = url.split("/").pop();
         this._videoCode = '26883701';
