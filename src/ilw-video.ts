@@ -1,11 +1,12 @@
-import { LitElement, TemplateResult, html } from 'lit';
+import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 // @ts-ignore
 import styles from './ilw-video.styles.css?inline'
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
-import { property } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 
+@customElement('ilw-video')
 class Video extends LitElement {
     @property({ attribute: true })
     aspectratio: string;
@@ -26,7 +27,7 @@ class Video extends LitElement {
     width: string;
 
     static get styles() {
-        return styles;
+        return unsafeCSS(styles);
     }
 
     constructor() {
@@ -94,4 +95,8 @@ class Video extends LitElement {
     }
 }
 
-customElements.define('ilw-video', Video);
+declare global {
+    interface HTMLElementTagNameMap {
+        "ilw-video": Video;
+    }
+}
