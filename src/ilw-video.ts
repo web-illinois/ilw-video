@@ -46,6 +46,11 @@ class Video extends LitElement {
         const slot = this.shadowRoot?.querySelector('slot');
         let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
 
+        if (embed === null && this.src === '') {
+            console.warn('no iframe or src defined. returning early.');
+            return;
+        }
+
         const dimensions = this.getIframeDimensions(embed);
         this.height = this.height ? this.height : dimensions.height;
         this.width = this.width ? this.width : dimensions.width;
