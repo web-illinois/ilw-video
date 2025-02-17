@@ -1,4 +1,4 @@
-name: deploy_development_manual
+name: deploy_development
 on:
   workflow_dispatch:
     inputs:
@@ -8,6 +8,7 @@ on:
         default: ''
         type: string
 env:
+  MAJORVERSION: ''
   COMPONENT_NAME: ${{ github.event.repository.name }}
 jobs:
   build:
@@ -20,7 +21,7 @@ jobs:
         env:
           GITHUB_BRANCH: ${{ github.event.inputs.version }}
       - name: Display version install
-        run: echo "Installing dev version ${VERSION} for component ${COMPONENT_NAME}"
+        run: echo "Installing dev version ${VERSION}"
 
       - run: npm install
       - run: npm rebuild

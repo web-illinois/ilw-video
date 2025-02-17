@@ -1,38 +1,50 @@
-import { LitElement, html } from 'lit';
-import styles from './ilw-video.styles'
+import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
+// @ts-ignore
+import styles from './ilw-video.styles.css?inline'
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
+import { customElement, property } from 'lit/decorators.js'
 
+@customElement('ilw-video')
 class Video extends LitElement {
-    static get properties() {
-        return {
-            aspectratio: { type: String, attribute: true },
-            height: { type: String, attribute: true },
-            src: { type: String, attribute: true },
-            title: { type: String, attribute: true },
-            width: { type: String, attribute: true }
-        };
-    }
+    @property({ attribute: true })
+    aspectratio: string;
+
+    @property({ attribute: true })
+    height: string;
+
+    @property({ attribute: true })
+    src: string;
+
+    @property({ attribute: true })
+    title: string;
+
+    @property({ attribute: true })
+    view: string;
+
+    @property({ attribute: true })
+    width: string;
 
     static get styles() {
-        return styles;
+        return unsafeCSS(styles);
     }
 
     constructor() {
         super();
         this.aspectratio = '';
         this.height = '';
-        this.src = undefined;
+        this.src = '';
         this.title = '';
+        this.view = '';
         this.width = '';
     }
 
     render() {
         const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
-        const slot = this.shadowRoot.querySelector('slot');
-        let embed = this.querySelector('iframe, embed, object');
+        const slot = this.shadowRoot?.querySelector('slot');
+        let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
 
         const dimensions = this.getIframeDimensions(embed);
         this.height = this.height ? this.height : dimensions.height;
@@ -41,7 +53,7 @@ class Video extends LitElement {
         if (embed === null) {
             embed = this.generateIframe(this.src, this.title, this.view);
             if (slot) {
-                slot.assign(embed)
+                slot.assign(embed as unknown as Element)
             }
         }
 
@@ -54,7 +66,7 @@ class Video extends LitElement {
         `;
     }
 
-    generateIframe(url, title, view) {
+    generateIframe(url: string, title: string, view: string): TemplateResult {
         console.warn(`Generating iframe for ${title}`);
         let urlHelper = new UrlItem.UrlItem(url, view);
         if (urlHelper.videoType == "youtube") {
@@ -66,11 +78,11 @@ class Video extends LitElement {
         } else if (urlHelper.videoType == "blank") {
             return html`<div style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: black; color: white; display: flex; justify-content: center; align-items: center; font-weight: bold;'>${title}</div>`;
         } else {
-            return '';
+            return html``;
         }
     }
 
-    getIframeDimensions(element) {
+    getIframeDimensions(element: Element | null) {
         const height = element?.getAttribute('height') ?? '100%';
         const width = element?.getAttribute('width') ?? '100%';
 
@@ -83,4 +95,8 @@ class Video extends LitElement {
     }
 }
 
-customElements.define('ilw-video', Video);
+declare global {
+    interface HTMLElementTagNameMap {
+        "ilw-video": Video;
+    }
+}

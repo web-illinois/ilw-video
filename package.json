@@ -11,14 +11,19 @@
   ],
   "exports": {
     ".": {
-      "import": "./src/ilw-video.js",
-      "require": "./src/ilw-video.cjs",
-      "default": "./src/ilw-video.js"
+      "import": "./dist/ilw-video.js",
+      "require": "./dist/ilw-video.cjs",
+      "default": "./dist/ilw-video.js"
+    },
+    "./ilw-video.css": {
+      "import": "./dist/ilw-video.css"
     }
   },
+  "main": "./dist/ilw-video.js",
+  "module": "./dist/ilw-video.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --config vite.build.config.js --emptyOutDir",
+    "build": "vite build --config vite.transpile.config.js --emptyOutDir && vite build --config vite.build.config.js --emptyOutDir",
     "preview": "vite preview",
     "prepack": "npm run build",
     "test": "playwright test",
@@ -30,6 +35,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "vite": "^5.4.11"
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-plugin-dts": "^4.3.0"
   }
 }
