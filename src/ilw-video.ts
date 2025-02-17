@@ -5,6 +5,7 @@ import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
 import { customElement, property } from 'lit/decorators.js'
+import { until } from 'lit/directives/until.js';
 
 @customElement('ilw-video')
 class Video extends LitElement {
@@ -40,49 +41,66 @@ class Video extends LitElement {
         this.width = '';
     }
 
+    private async fetchData() {
+        console.debug('waiting for data');
+        await new Promise((resolve, reject) => {
+            setTimeout(() => resolve("done waiting!"), 5000)
+        });
+        return html`
+            <iframe width="560" height="315"
+                    src="https://www.youtube-nocookie.com/embed/pW8cNXyAqyI?si=X9643WrgKwDm0BTw"
+                    title="Progress isn't Quiet at Illinois" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          `;
+    }
+
     render() {
         const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
         let content = 'Just a placeholder.';
         if (this.src !== undefined) {
             content = 'use src attribute.'
+
+            const slot = this.shadowRoot?.querySelector('slot');
+            const dimensions = this.getIframeDimensions(null);
+
+            this.height = this.height ? this.height : dimensions.height;
+            this.width = this.width ? this.width : dimensions.width;
+
+            const embed = this.generateIframe(this.src, this.title, this.view ?? '');
+            if (slot) {
+                slot.assign(embed as unknown as Element)
+            }
+
+            return html`
+                <div class="video">
+                    <p>${content}</p>
+                    <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
+                        ${slot ? html`${slot}` : html`${embed}`}
+                    </div>
+                </div>
+            `;
         } else {
             content = 'await iframe availability'
-        }
 
-        // const slot = this.shadowRoot?.querySelector('slot');
-        // let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
-
-        // if (embed === null && this.src === '') {
-        //     console.warn('no iframe or src defined. returning early.');
-        //     return;
-        // }
-
-        // const dimensions = this.getIframeDimensions(embed);
-        // this.height = this.height ? this.height : dimensions.height;
-        // this.width = this.width ? this.width : dimensions.width;
-
-        // if (embed === null) {
-        //     embed = this.generateIframe(this.src, this.title, this.view);
-        //     if (slot) {
-        //         slot.assign(embed as unknown as Element)
-        //     }
-        // }
-
-        // return html`
-        //     <div class="video">
-        //         <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-        //             ${slot ? html`${slot}` : html`${embed}`}
-        //         </div>
-        //     </div>
-        // `;
-        return html`
+            return html`
             <div class="video">
                 <p>${content}</p>
                 <div class="aspectratio" style="${inlineAspect};">
+                ${until(
+                this.fetchData()
+                ,
+                html`
+                        <p>Awaiting callback</p>
+                    `
+            )}
                 </div>
             </div>
-        `;
+            `;
+        }
+
+        throw new Error('this should be unreachable');
     }
 
     generateIframe(url: string, title: string, view: string): TemplateResult {
