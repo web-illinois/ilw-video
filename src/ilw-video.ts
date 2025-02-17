@@ -9,10 +9,10 @@ import { customElement, property } from 'lit/decorators.js'
 @customElement('ilw-video')
 class Video extends LitElement {
     @property({ attribute: true })
-    aspectratio: string | undefined;
+    aspectratio: string;
 
     @property({ attribute: true })
-    height: string | undefined;
+    height: string;
 
     @property({ attribute: true })
     src: string | undefined;
@@ -24,7 +24,7 @@ class Video extends LitElement {
     view: string | undefined;
 
     @property({ attribute: true })
-    width: string | undefined;
+    width: string;
 
     static get styles() {
         return unsafeCSS(styles);
@@ -32,20 +32,23 @@ class Video extends LitElement {
 
     constructor() {
         super();
-        // this.aspectratio = '';
-        // this.height = '';
+        this.aspectratio = '';
+        this.height = '';
         // this.src = '';
         this.title = '';
         // this.view = '';
-        // this.width = '';
+        this.width = '';
     }
 
     render() {
+        const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
+
         let content = 'Just a placeholder.';
         if (this.src !== undefined) {
-            content = 'use src attribute instead.'
+            content = 'use src attribute.'
+        } else {
+            content = 'await iframe availability'
         }
-        // const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
         // const slot = this.shadowRoot?.querySelector('slot');
         // let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
@@ -74,7 +77,11 @@ class Video extends LitElement {
         //     </div>
         // `;
         return html`
-            <p>${content}</p>
+            <div class="video">
+                <p>${content}</p>
+                <div class="aspectratio" style="${inlineAspect};">
+                </div>
+            </div>
         `;
     }
 
