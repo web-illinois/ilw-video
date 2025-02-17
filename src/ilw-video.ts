@@ -9,22 +9,22 @@ import { customElement, property } from 'lit/decorators.js'
 @customElement('ilw-video')
 class Video extends LitElement {
     @property({ attribute: true })
-    aspectratio: string;
+    aspectratio: string | undefined;
 
     @property({ attribute: true })
-    height: string;
+    height: string | undefined;
 
     @property({ attribute: true })
-    src: string;
+    src: string | undefined;
 
     @property({ attribute: true })
     title: string;
 
     @property({ attribute: true })
-    view: string;
+    view: string | undefined;
 
     @property({ attribute: true })
-    width: string;
+    width: string | undefined;
 
     static get styles() {
         return unsafeCSS(styles);
@@ -32,15 +32,19 @@ class Video extends LitElement {
 
     constructor() {
         super();
-        this.aspectratio = '';
-        this.height = '';
-        this.src = '';
+        // this.aspectratio = '';
+        // this.height = '';
+        // this.src = '';
         this.title = '';
-        this.view = '';
-        this.width = '';
+        // this.view = '';
+        // this.width = '';
     }
 
     render() {
+        let content = 'Just a placeholder.';
+        if (this.src !== undefined) {
+            content = 'use src attribute instead.'
+        }
         // const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
         // const slot = this.shadowRoot?.querySelector('slot');
@@ -70,7 +74,7 @@ class Video extends LitElement {
         //     </div>
         // `;
         return html`
-            <p>Just a placeholder</p>
+            <p>${content}</p>
         `;
     }
 
