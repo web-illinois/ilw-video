@@ -41,33 +41,36 @@ class Video extends LitElement {
     }
 
     render() {
-        const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
+        // const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
-        const slot = this.shadowRoot?.querySelector('slot');
-        let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
+        // const slot = this.shadowRoot?.querySelector('slot');
+        // let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
 
-        if (embed === null && this.src === '') {
-            console.warn('no iframe or src defined. returning early.');
-            return;
-        }
+        // if (embed === null && this.src === '') {
+        //     console.warn('no iframe or src defined. returning early.');
+        //     return;
+        // }
 
-        const dimensions = this.getIframeDimensions(embed);
-        this.height = this.height ? this.height : dimensions.height;
-        this.width = this.width ? this.width : dimensions.width;
+        // const dimensions = this.getIframeDimensions(embed);
+        // this.height = this.height ? this.height : dimensions.height;
+        // this.width = this.width ? this.width : dimensions.width;
 
-        if (embed === null) {
-            embed = this.generateIframe(this.src, this.title, this.view);
-            if (slot) {
-                slot.assign(embed as unknown as Element)
-            }
-        }
+        // if (embed === null) {
+        //     embed = this.generateIframe(this.src, this.title, this.view);
+        //     if (slot) {
+        //         slot.assign(embed as unknown as Element)
+        //     }
+        // }
 
+        // return html`
+        //     <div class="video">
+        //         <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
+        //             ${slot ? html`${slot}` : html`${embed}`}
+        //         </div>
+        //     </div>
+        // `;
         return html`
-            <div class="video">
-                <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                    ${slot ? html`${slot}` : html`${embed}`}
-                </div>
-            </div>
+            <p>Just a placeholder</p>
         `;
     }
 
