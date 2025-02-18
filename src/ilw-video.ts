@@ -46,13 +46,15 @@ class Video extends LitElement {
         await new Promise((resolve, reject) => {
             setTimeout(() => resolve("done waiting!"), 5000)
         });
-        return html`
-            <iframe width="560" height="315"
-                    src="https://www.youtube-nocookie.com/embed/pW8cNXyAqyI?si=X9643WrgKwDm0BTw"
-                    title="Progress isn't Quiet at Illinois" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          `;
+        await this.getUpdateComplete();
+        const slot = this.shadowRoot?.querySelector('slot');
+        let embed: Element | null = this.querySelector('iframe, embed, object');
+
+        const dimensions = this.getIframeDimensions(embed);
+        this.height = this.height ? this.height : dimensions.height;
+        this.width = this.width ? this.width : dimensions.width;
+
+        return slot ? html`${slot}` : html`${embed}`;
     }
 
     render() {
@@ -84,16 +86,16 @@ class Video extends LitElement {
         } else {
             content = 'await iframe availability'
 
+
             return html`
             <div class="video">
                 <p>${content}</p>
-                <div class="aspectratio" style="${inlineAspect};">
-                ${until(
-                this.fetchData()
-                ,
+                <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
+                    ${until(
+                this.fetchData(),
                 html`
-                        <p>Awaiting callback</p>
-                    `
+                            <p>awaiting callback</p>
+                        `
             )}
                 </div>
             </div>
