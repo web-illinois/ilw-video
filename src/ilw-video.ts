@@ -57,7 +57,7 @@ class Video extends LitElement {
         this.width = this.width ? this.width : dimensions.width;
 
         if (embed === null) {
-            embed = this.generateIframe(this.src as string, this.title, this.view ?? '');
+            embed = this.generateIframe(this.src ?? '', this.title, this.view ?? '');
             if (slot) {
                 slot.assign(embed as unknown as Element)
             }
