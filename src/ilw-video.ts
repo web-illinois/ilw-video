@@ -35,74 +35,53 @@ class Video extends LitElement {
         super();
         this.aspectratio = '';
         this.height = '';
-        // this.src = '';
         this.title = '';
-        // this.view = '';
         this.width = '';
     }
 
-    private async fetchData() {
-        console.debug('waiting for data');
-        await new Promise((resolve, reject) => {
-            setTimeout(() => resolve("done waiting!"), 5000)
-        });
-        await this.getUpdateComplete();
+    private async resolveEmbed() {
+        let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
+        console.debug('resolving embed', { embed });
+
+        // check whether we're using attribute or slotted rendering.
+        // if both are missing, assume slotted iframe has not attached to component.
+        if (this.src === undefined && embed === null) {
+            console.debug('no src or iframe. awaiting component update.')
+            await this.getUpdateComplete();
+        }
+
         const slot = this.shadowRoot?.querySelector('slot');
-        let embed: Element | null = this.querySelector('iframe, embed, object');
 
         const dimensions = this.getIframeDimensions(embed);
         this.height = this.height ? this.height : dimensions.height;
         this.width = this.width ? this.width : dimensions.width;
 
-        return slot ? html`${slot}` : html`${embed}`;
+        if (embed === null) {
+            embed = this.generateIframe(this.src as string, this.title, this.view ?? '');
+            if (slot) {
+                slot.assign(embed as unknown as Element)
+            }
+        }
+
+        console.debug('returning video', { slot }, { embed });
+        return slot ? html`${slot}` : html`${embed}`
     }
 
     render() {
         const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
-        let content = 'Just a placeholder.';
-        if (this.src !== undefined) {
-            content = 'use src attribute.'
-
-            const slot = this.shadowRoot?.querySelector('slot');
-            const dimensions = this.getIframeDimensions(null);
-
-            this.height = this.height ? this.height : dimensions.height;
-            this.width = this.width ? this.width : dimensions.width;
-
-            const embed = this.generateIframe(this.src, this.title, this.view ?? '');
-            if (slot) {
-                slot.assign(embed as unknown as Element)
-            }
-
-            return html`
-                <div class="video">
-                    <p>${content}</p>
-                    <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                        ${slot ? html`${slot}` : html`${embed}`}
-                    </div>
-                </div>
-            `;
-        } else {
-            content = 'await iframe availability'
-
-
-            return html`
+        return html`
             <div class="video">
-                <p>${content}</p>
                 <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
                     ${until(
-                this.fetchData(),
-                html`
-                            <p>awaiting callback</p>
+            this.resolveEmbed(),
+            html`
+                            <!-- awaiting callback -->
                         `
-            )}
+        )}
                 </div>
             </div>
             `;
-        }
-
-        throw new Error('this should be unreachable');
     }
 
     generateIframe(url: string, title: string, view: string): TemplateResult {
