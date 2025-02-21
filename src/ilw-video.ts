@@ -14,19 +14,19 @@ class Video extends LitElement {
     @property({ attribute: true })
     aspectratio: string;
 
-    @property({ attribute: true })
+    @property({ attribute: true, reflect: true })
     height: string;
 
     @property({ attribute: true })
-    src: string | undefined;
+    src?: string;
 
     @property({ attribute: true })
     title: string;
 
     @property({ attribute: true })
-    view: string | undefined;
+    view?: string;
 
-    @property({ attribute: true })
+    @property({ attribute: true, reflect: true })
     width: string;
 
     static get styles() {
@@ -36,9 +36,9 @@ class Video extends LitElement {
     constructor() {
         super();
         this.aspectratio = '';
-        this.height = '';
         this.title = '';
-        this.width = '';
+        this.height = '100%';
+        this.width = '100%';
     }
 
     private async resolveEmbed() {
