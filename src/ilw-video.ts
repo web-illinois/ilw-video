@@ -69,7 +69,7 @@ class Video extends LitElement {
             `;
     }
 
-    generateIframe(url: string, title: string, view: string): TemplateResult {
+    private generateIframe(url: string, title: string, view: string): TemplateResult {
         console.warn(`Generating iframe for ${title}`);
         let urlHelper = new UrlItem.UrlItem(url, view);
         if (urlHelper.videoType == "youtube") {
@@ -85,7 +85,7 @@ class Video extends LitElement {
         }
     }
 
-    getIframeDimensions(element: Element | null) {
+    private getIframeDimensions(element: Element | null) {
         const height = element?.getAttribute('height') ?? '100%';
         const width = element?.getAttribute('width') ?? '100%';
 
