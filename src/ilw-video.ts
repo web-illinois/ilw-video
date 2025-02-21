@@ -4,11 +4,13 @@ import styles from './ilw-video.styles.css?inline'
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
-import { customElement, property } from 'lit/decorators.js'
-import { until } from 'lit/directives/until.js';
+import { customElement, property, query } from 'lit/decorators.js'
 
 @customElement('ilw-video')
 class Video extends LitElement {
+    @query('iframe')
+    embed?: HTMLIFrameElement;
+
     @property({ attribute: true })
     aspectratio: string;
 
@@ -70,15 +72,26 @@ class Video extends LitElement {
     render() {
         const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
+        if (this.src !== undefined) {
+            const dimensions = this.getIframeDimensions(null);
+            this.height = this.height ? this.height : dimensions.height;
+            this.width = this.width ? this.width : dimensions.width;
+
+            const embed = this.generateIframe(this.src ?? '', this.title, this.view ?? '');
+
+            return html`
+                <div class="video">
+                    <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
+                        <slot>${embed}</slot>
+                    </div>
+                </div>
+                `;
+        }
+
         return html`
             <div class="video">
                 <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                    ${until(
-            this.resolveEmbed(),
-            html`
-                            <!-- awaiting callback -->
-                        `
-        )}
+                    <slot></slot>
                 </div>
             </div>
             `;
