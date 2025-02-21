@@ -4,7 +4,7 @@ import styles from './ilw-video.styles.css?inline'
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
-import { customElement, property, query, queryAssignedElements } from 'lit/decorators.js'
+import { customElement, property, queryAssignedElements } from 'lit/decorators.js'
 
 @customElement('ilw-video')
 class Video extends LitElement {
@@ -39,34 +39,6 @@ class Video extends LitElement {
         this.title = '';
         this.height = '';
         this.width = '';
-    }
-
-    private async resolveEmbed() {
-        let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
-        console.debug('resolving embed', { embed });
-
-        // check whether we're using attribute or slotted rendering.
-        // if both are missing, assume slotted iframe has not attached to component.
-        if (this.src === undefined && embed === null) {
-            console.debug('no src or iframe. awaiting component update.')
-            await this.getUpdateComplete();
-        }
-
-        const slot = this.shadowRoot?.querySelector('slot');
-
-        const dimensions = this.getIframeDimensions(embed);
-        this.height = this.height ? this.height : dimensions.height;
-        this.width = this.width ? this.width : dimensions.width;
-
-        if (embed === null) {
-            embed = this.generateIframe(this.src ?? '', this.title, this.view ?? '');
-            if (slot) {
-                slot.assign(embed as unknown as Element)
-            }
-        }
-
-        console.debug('returning video', { slot }, { embed });
-        return slot ? html`${slot}` : html`${embed}`
     }
 
     render() {
@@ -129,7 +101,7 @@ class Video extends LitElement {
         if (this.embed === undefined || this.embed.length <= 0) {
             return;
         }
-        
+
         const embed = this.embed[0];
         const dimensions = this.getIframeDimensions(embed);
         this.height = this.height ? this.height : dimensions.height;
