@@ -4,12 +4,12 @@ import styles from './ilw-video.styles.css?inline'
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
-import { customElement, property, query } from 'lit/decorators.js'
+import { customElement, property, query, queryAssignedElements } from 'lit/decorators.js'
 
 @customElement('ilw-video')
 class Video extends LitElement {
-    @query('iframe')
-    embed?: HTMLIFrameElement;
+    @queryAssignedElements()
+    embed?: Array<HTMLIFrameElement>;
 
     @property({ attribute: true })
     aspectratio: string;
@@ -37,8 +37,8 @@ class Video extends LitElement {
         super();
         this.aspectratio = '';
         this.title = '';
-        this.height = '100%';
-        this.width = '100%';
+        this.height = '';
+        this.width = '';
     }
 
     private async resolveEmbed() {
@@ -91,7 +91,7 @@ class Video extends LitElement {
         return html`
             <div class="video">
                 <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                    <slot></slot>
+                    <slot @slotchange=${this.handleSlotChange}></slot>
                 </div>
             </div>
             `;
@@ -123,6 +123,17 @@ class Video extends LitElement {
         };
 
         return dimensions;
+    }
+
+    private handleSlotChange(e: any) {
+        if (this.embed === undefined || this.embed.length <= 0) {
+            return;
+        }
+        
+        const embed = this.embed[0];
+        const dimensions = this.getIframeDimensions(embed);
+        this.height = this.height ? this.height : dimensions.height;
+        this.width = this.width ? this.width : dimensions.width;
     }
 }
 
