@@ -4,26 +4,29 @@ import styles from './ilw-video.styles.css?inline'
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, queryAssignedElements } from 'lit/decorators.js'
 
 @customElement('ilw-video')
 class Video extends LitElement {
+    @queryAssignedElements()
+    embed?: Array<HTMLIFrameElement>;
+
     @property({ attribute: true })
     aspectratio: string;
 
-    @property({ attribute: true })
+    @property({ attribute: true, reflect: true })
     height: string;
 
     @property({ attribute: true })
-    src: string;
+    src?: string;
 
     @property({ attribute: true })
     title: string;
 
     @property({ attribute: true })
-    view: string;
+    view?: string;
 
-    @property({ attribute: true })
+    @property({ attribute: true, reflect: true })
     width: string;
 
     static get styles() {
@@ -33,40 +36,40 @@ class Video extends LitElement {
     constructor() {
         super();
         this.aspectratio = '';
-        this.height = '';
-        this.src = '';
         this.title = '';
-        this.view = '';
+        this.height = '';
         this.width = '';
     }
 
     render() {
         const inlineAspect = this.aspectratio ? `--ilw-video--aspect-ratio: ${AttributeUtils.convertAspectRatio(this.aspectratio)}` : '';
 
-        const slot = this.shadowRoot?.querySelector('slot');
-        let embed: Element | null | TemplateResult = this.querySelector('iframe, embed, object');
+        if (this.src !== undefined) {
+            const dimensions = this.getIframeDimensions(null);
+            this.height = this.height ? this.height : dimensions.height;
+            this.width = this.width ? this.width : dimensions.width;
 
-        const dimensions = this.getIframeDimensions(embed);
-        this.height = this.height ? this.height : dimensions.height;
-        this.width = this.width ? this.width : dimensions.width;
+            const embed = this.generateIframe(this.src ?? '', this.title, this.view ?? '');
 
-        if (embed === null) {
-            embed = this.generateIframe(this.src, this.title, this.view);
-            if (slot) {
-                slot.assign(embed as unknown as Element)
-            }
+            return html`
+                <div class="video">
+                    <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
+                        <slot>${embed}</slot>
+                    </div>
+                </div>
+                `;
         }
 
         return html`
             <div class="video">
                 <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                    ${slot ? html`${slot}` : html`${embed}`}
+                    <slot @slotchange=${this.handleSlotChange}></slot>
                 </div>
             </div>
-        `;
+            `;
     }
 
-    generateIframe(url: string, title: string, view: string): TemplateResult {
+    private generateIframe(url: string, title: string, view: string): TemplateResult {
         console.warn(`Generating iframe for ${title}`);
         let urlHelper = new UrlItem.UrlItem(url, view);
         if (urlHelper.videoType == "youtube") {
@@ -82,7 +85,7 @@ class Video extends LitElement {
         }
     }
 
-    getIframeDimensions(element: Element | null) {
+    private getIframeDimensions(element: Element | null) {
         const height = element?.getAttribute('height') ?? '100%';
         const width = element?.getAttribute('width') ?? '100%';
 
@@ -92,6 +95,17 @@ class Video extends LitElement {
         };
 
         return dimensions;
+    }
+
+    private handleSlotChange(e: any) {
+        if (this.embed === undefined || this.embed.length <= 0) {
+            return;
+        }
+
+        const embed = this.embed[0];
+        const dimensions = this.getIframeDimensions(embed);
+        this.height = this.height ? this.height : dimensions.height;
+        this.width = this.width ? this.width : dimensions.width;
     }
 }
 
