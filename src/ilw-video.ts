@@ -109,8 +109,4 @@ class Video extends LitElement {
     }
 }
 
-declare global {
-    interface HTMLElementTagNameMap {
-        "ilw-video": Video;
-    }
-}
+customElements.get('ilw-video') || customElements.define('ilw-video', Video);
