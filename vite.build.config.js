@@ -13,8 +13,8 @@ export default defineConfig({
         },
         rollupOptions: {
             output: {
-                assetFileNames: (chunkInfo) => {
-                    if (chunkInfo.name === "style.css") return "ilw-video.css";
+                assetFileNames: () => {
+                    return "[name][extname]";
                 },
             },
         },

@@ -15,8 +15,8 @@ export default defineConfig({
         rollupOptions: {
             external: [/^@?lit/],
             output: {
-                assetFileNames: (chunkInfo) => {
-                    if (chunkInfo.name === "style.css") return "ilw-video.css";
+                assetFileNames: () => {
+                    return "[name][extname]";
                 },
             },
         },
