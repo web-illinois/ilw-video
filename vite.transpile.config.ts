@@ -1,10 +1,11 @@
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
     root: "src",
     build: {
-        outDir: "../dist/cdn",
+        outDir: "../dist",
         lib: {
             name: "ilw-video",
             entry: "ilw-video.ts",
@@ -12,9 +13,10 @@ export default defineConfig({
             formats: ["es"],
         },
         rollupOptions: {
+            external: [/^@?lit/, /^@illinois-toolkit/],
             output: {
-                assetFileNames: () => {
-                    return "[name][extname]";
+                assetFileNames: (chunkInfo) => {
+                    return "[name][extname]"; // vite default
                 },
             },
         },
@@ -22,4 +24,5 @@ export default defineConfig({
     server: {
         hmr: false,
     },
+    plugins: [dts()],
 });
