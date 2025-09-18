@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { describe, expect, test } from "vitest";
 import AttributeUtils from '../src/utilities/attribute-utils';
 
-test.describe('pixelate assigns pixel values to unitless dimensions', () => {
+describe('pixelate assigns pixel values to unitless dimensions', () => {
     [
         { value: '1', expected: '1px' },
         { value: 7, expected: '7px' },
@@ -16,7 +16,7 @@ test.describe('pixelate assigns pixel values to unitless dimensions', () => {
 
 });
 
-test.describe('aspect ratio converter handles legacy values', () => {
+describe('aspect ratio converter handles legacy values', () => {
     [
         { aspect: 'tv', expected: '16/9' },
         { aspect: 'vertical', expected: '9/16' },

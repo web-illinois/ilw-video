@@ -133,3 +133,4 @@ dist
 test-results/
 var/
 playwright-report/
+__screenshots__/

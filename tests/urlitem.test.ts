@@ -1,7 +1,6 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from "vitest";
 import UrlItem from '../src/utilities/urlitem';
 
-test.describe.configure({ mode: 'parallel' });
 test('youtube short', () => {
     const urlInformation = new UrlItem.UrlItem('https://youtube.com/shorts/rNVU0k3u14Y', '');
     expect(urlInformation.videoType).toBe('youtube');
