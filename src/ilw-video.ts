@@ -1,4 +1,4 @@
-import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
+import { CSSResultGroup, LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 // @ts-ignore
 import styles from './ilw-video.styles.css?inline'
 import './ilw-video.css';
@@ -29,7 +29,7 @@ class Video extends LitElement {
     @property({ attribute: true, reflect: true })
     width: string;
 
-    static get styles() {
+    static get styles(): CSSResultGroup {
         return unsafeCSS(styles);
     }
 
