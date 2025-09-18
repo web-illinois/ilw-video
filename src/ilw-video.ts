@@ -7,7 +7,7 @@ import AttributeUtils from './utilities/attribute-utils';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js'
 
 @customElement('ilw-video')
-class Video extends LitElement {
+export default class Video extends LitElement {
     @queryAssignedElements()
     embed?: Array<HTMLIFrameElement>;
 
