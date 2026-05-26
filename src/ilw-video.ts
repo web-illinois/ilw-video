@@ -1,6 +1,7 @@
 import { CSSResultGroup, LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 // @ts-ignore
 import styles from './ilw-video.styles.css?inline'
+// @ts-ignore
 import './ilw-video.css';
 import UrlItem from './utilities/urlitem';
 import AttributeUtils from './utilities/attribute-utils';
@@ -54,7 +55,7 @@ export default class Video extends LitElement {
             return html`
                 <div class="video">
                     <div class="aspectratio" style="${inlineAspect} max-height: ${AttributeUtils.pixelate(this.height)}; max-width: ${AttributeUtils.pixelate(this.width)};">
-                        <slot>${embed}</slot>
+                        ${embed}
                     </div>
                 </div>
                 `;
