@@ -6,7 +6,7 @@
 	"element-name": "ilw-video",
 	"description": "Responsive video wrapper for Illinois Toolkit. This component ensures a consistent size and aspect ratio across breakpoints, but does not supply the video element or its controls.",
 	"builder-version": "1.2",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"date": "05/26/2026",
 	"css": "https://cdn.toolkit.illinois.edu/ilw-video/1.2/ilw-video.css",
 	"js": "https://cdn.toolkit.illinois.edu/ilw-video/1.2/ilw-video.js",
