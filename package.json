@@ -1,6 +1,8 @@
 {
   "name": "@illinois-toolkit/ilw-video",
   "description": "Illinois Toolkit: A responsive wrapper for embedded videos.",
+  "repository": "github:web-illinois/ilw-video",
+  "license": "MIT",
   "private": false,
   "version": "1.2.0",
   "type": "module",
