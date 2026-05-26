@@ -2,7 +2,7 @@
   "name": "@illinois-toolkit/ilw-video",
   "description": "Illinois Toolkit: A responsive wrapper for embedded videos.",
   "private": false,
-  "version": "1.1.2",
+  "version": "1.2.0",
   "type": "module",
   "files": [
     "src/**",
@@ -13,10 +13,7 @@
     ".": {
       "import": "./dist/ilw-video.js",
       "require": "./dist/ilw-video.cjs",
-      "default": "./dist/ilw-video.js",
-      "types": [
-        "./dist/ilw-video.d.ts"
-      ]
+      "default": "./dist/ilw-video.js"
     },
     "./ilw-video.css": {
       "import": "./dist/ilw-video.css"
