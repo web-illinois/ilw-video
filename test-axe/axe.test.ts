@@ -9,8 +9,10 @@ test.describe("homepage", () => {
     }, testInfo) => {
         await page.goto("./samples/index.html");
 
+        //ignore iframes -- not part of our codebase
         const accessibilityScanResults = await new AxeBuilder({ page })
             .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+            .exclude('iframe')
             .analyze();
 
         if (!fs.existsSync("dist/cdn")) {
@@ -33,7 +35,6 @@ test.describe("homepage", () => {
             path: "dist/cdn/axe.html",
             contentType: "text/html",
         });
-
         expect(accessibilityScanResults.violations.length === 0).toBeTruthy();
     });
 });

@@ -7,7 +7,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      id-token: write # Required for NPM Publish OIDC
+      id-token: write  # Required for NPM Publish OIDC
     uses: web-illinois/toolkit-management/.github/workflows/component_deploy.yml@main
     with:
       COMPONENT_NAME: ${{github.event.repository.name}}
