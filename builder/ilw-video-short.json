@@ -1,12 +1,21 @@
 {
-    "title": "Video Short",
-    "tag": "ilw-video-short",
-    "github": "https://github.com/web-illinois/ilw-video/",
-    "type": "web component",
-    "element-name": "ilw-video",
-    "description": "Responsive video wrapper for Illinois Toolkit proportioned for YouTube shorts.",
-    "purpose": "Make an embedded YouTube short responsive.",
-    "toolkit-version": "1.2",
-    "production-version": "1.2",
-    "development-version": "latest"
+  "title": "Video Short",
+  "id": "ilw-video-short",
+  "type": "Web Component",
+  "repository-name": "ilw-video",
+  "description": "Embed a vertical YouTube Short in a responsive frame that keeps the correct proportions across screen sizes.",
+  "purpose": "Make an embedded YouTube short responsive.",
+  "customtemplates": [],
+  "versions": [
+    {
+      "name": "1.0",
+      "notes": "Known issues: slotted iframe may fail to load in certain cases (https://github.com/web-illinois/ilw-video/issues/12). Workaround: Define video using component attributes.",
+      "template": "1.0"
+    },
+    {
+      "name": "1.2",
+      "notes": "Known issues: slotted iframe may fail to load in certain cases (https://github.com/web-illinois/ilw-video/issues/12). Workaround: Define video using component attributes.",
+      "template": "1.0"
+    }
+  ]
 }
