@@ -29,7 +29,7 @@
       "name": "aspectratio",
       "description": "Override the aspect ratio variable on a single item.",
       "values": [
-        "9/16",
+        "9/16;",
         ""
       ]
     },
