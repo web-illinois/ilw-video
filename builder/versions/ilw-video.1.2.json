@@ -35,7 +35,7 @@
       "description": "Override the aspect ratio variable on a single item.",
       "values": [
         "",
-        "197/320"
+        "197/320;"
       ]
     },
     {
